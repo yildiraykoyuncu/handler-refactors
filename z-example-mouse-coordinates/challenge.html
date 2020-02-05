@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <!-- open your console! -->
+  <title>Mouse Coordinates</title>
+  <style>
+    .full-screen {
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+  <script src='../testing.js'></script>
+  <script id='logic'>
+    const formatCoordinatesTests = [
+      { name: 'first', args: [5, 1], expected: 'X: 5\nY: 2' },
+      { name: 'second', args: [12, -40], expected: 'X: 12\nY: -40' },
+      { name: 'third', args: [-1999, 409], expected: 'X: -1999\nY: 409' },
+    ]
+
+    function formatCoordinates(x, y) { }
+
+    testing(formatCoordinates, formatCoordinatesTests);
+  </script>
+  <script id='handlers'>
+    function handler(event) {
+      debugger;
+      // read & process user input
+      const xValue = event.pageX;
+      const yValue = event.pageY;
+
+      // execute core logic
+      const formattedCoordinates = 'X: ' + xValue + '\nY: ' + yValue;
+
+      // render result for user
+      document.getElementById('mouse-position').innerHTML = formattedCoordinates;
+
+      // log action for developers
+      console.log('\n--- user action ---');
+      console.log('xValue:', (typeof xValue) + ',', xValue);
+      console.log('yValue:', (typeof yValue) + ',', yValue);
+      console.log('formattedCoordinates:', (typeof formattedCoordinates) + ',', formattedCoordinates);
+
+      // for the browser
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <section class='full-screen' id='user-interface'>
+    <pre id='mouse-position' class='center pretty-text'></pre>
+  </section>
+
+  <script id='listeners'>
+    document.getElementById('user-interface').addEventListener('mousemove', handler);
+  </script>
+</body>
+
+</html>

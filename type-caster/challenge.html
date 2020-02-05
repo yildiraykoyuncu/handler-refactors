@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Type Caster</title>
+  <meta charset="utf-8">
+
+  <style>
+    .output {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: monospace;
+      font-size: 2em;
+    }
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+
+  <script src='../testing.js'></script>
+  <script id='logic'>
+    const typeCasterTests = [
+      { name: 'first', args: [34, 'string'], expected: '34' },
+      { name: 'second', args: ['asdf', 'string'], expected: 'asdf' },
+      { name: 'third', args: [3, 'number'], expected: 3 },
+      { name: 'fourth', args: ['45', 'number'], expected: 45 },
+      { name: 'fifth', args: [true, 'number'], expected: 1 },
+      { name: 'sixth', args: [undefined, 'number'], expected: NaN },
+      { name: 'seventh', args: [undefined, 'boolean'], expected: false },
+      { name: 'eighth', args: [1, 'boolean'], expected: true },
+      { name: 'ninth', args: [0, 'boolean'], expected: false },
+      { name: 'tenth', args: [' ', 'boolean'], expected: true },
+      { name: 'eleventh', args: ['', 'boolean'], expected: false },
+      { name: 'twelfth', args: ['anything else!', 'undefined',], expected: undefined },
+    ];
+
+    function typeCaster(value, type) { }
+
+    testing(typeCaster, typeCasterTests);
+  </script>
+  <script id='handler'>
+    function typeCastHandler(event) {
+      debugger;
+      // read & process user input
+      const form = event.target.form;
+      const intendedType = form.type.value;
+      const stringToCast = form.value.value;
+
+      // execute core logic
+      let newValue;
+      if (intendedType === 'string') {
+        newValue = String(stringToCast);
+      } else if (intendedType === 'number') {
+        newValue = Number(stringToCast);
+      } else if (intendedType === 'boolean') {
+        newValue = Boolean(stringToCast);
+      } else {
+        newValue = undefined;
+      }
+
+      // communicate result to user
+      document.getElementById('casted-value').innerHTML = typeof newValue + ': ' + newValue;
+
+      // log action for developers
+      console.log('\n-- user action --');
+      console.log('stringToCast:', '(' + typeof stringToCast + ')', stringToCast);
+      console.log('intendedType:', '(' + typeof intendedType + ')', intendedType);
+      console.log('newValue:', '(' + typeof newValue + ')', newValue);
+
+      // tell the browser everything is OK
+      return true;
+    }
+
+  </script>
+</head>
+
+<body>
+  <section id='user-interface'>
+    <form class='inputs'>
+      Cast this string:
+      <input name='value' type='text' />
+      To this type:
+      <select name="type">
+        <option value="string">string</option>
+        <option value="number">number</option>
+        <option value="boolean">boolean</option>
+        <option value="undefined">undefined</option>
+      </select>
+      <input type='button' id='user-action' value='Cast it!' />
+    </form>
+    <code id='casted-value' class='output'></code>
+  </section>
+
+  <script id='listener'>
+    document.getElementById('user-action').addEventListener('click', typeCastHandler);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Duck Duck Search</title>
+  <meta charset="utf-8">
+
+  <style>
+    .input-field {
+      width: 30vw;
+    }
+
+    .search-form {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+
+  <script src='../testing.js'></script>
+  <script id='logic'>
+    const generateSearchURLTests = [
+      { name: 'first', args: ['asdf'], expected: 'https://duckduckgo.com/?q=asdf' },
+      { name: 'second', args: ['fdsa'], expected: 'https://duckduckgo.com/?q=fdsa' },
+      { name: 'third', args: ['tor browser'], expected: 'https://duckduckgo.com/?q=tor%20browser' },
+      { name: 'fourth', args: ['const x = null;'], expected: 'https://duckduckgo.com/?q=const%20x%20%3D%20null%3B' },
+      { name: 'fifth', args: ['==-+_ *&^*<>diso }{[si'], expected: 'https://duckduckgo.com/?q=%3D%3D-%2B_%20*%26%5E*%3C%3Ediso%20%7D%7B%5Bsi' },
+    ];
+
+    function generateSearchURL(searchQuery) { }
+
+    testing(generateSearchURL, generateSearchURLTests);
+  </script>
+  <script id='handler'>
+    function searchHandler(event) {
+      debugger;
+      // read & process user input
+      const form = event.target.form;
+      const userInput = form.query.value;
+
+      // execute core logic
+      const encodedQuery = encodeURIComponent(userInput);
+      const searchURL = 'https://duckduckgo.com/?q=' + encodedQuery;
+
+      // communicate result to user
+      window.open(searchURL, '_blank');
+
+      // log action for developers
+      console.log('\n-- user action --');
+      console.log('userInput:', '(' + typeof userInput + ')', userInput);
+      console.log('searchURL:', '(' + typeof searchURL + ')', searchURL);
+
+      // tell the browser everything is OK
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <section id='user-interface'>
+    <form class='search-form'>
+      <input type='search' name='query' class='input-field' />
+      <button type='button' id='user-action'>DuckDuckSearch</button>
+    </form>
+  </section>
+
+  <script id='listener'>
+    document.getElementById('user-action').addEventListener('click', searchHandler);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <!-- open your console! -->
+  <title>Flip Book</title>
+  <style>
+    /* no styles, it's a JS exercise */
+  </style>
+  <script src='../testing.js'></script>
+  <script id='logic'>
+    const reverseAndUpperTests = [
+      { name: 'first', args: ['fdsa'], expected: 'ASDF' },
+      { name: 'second', args: ['./\.'], expected: '.\/.' },
+      { name: 'third', args: ['Fd-Df'], expected: 'FD-DF' },
+    ]
+
+    function reverseAndUpper(str) { }
+
+    testing(reverseAndUpper, reverseAndUpperTests);
+  </script>
+  <script id='handler'>
+    function handler(event) {
+      debugger;
+      // read and process user input
+      const input = event.target.value;
+
+      // execute core logic
+      const upperCased = input.toUpperCase();
+      const splitted = upperCased.split('');
+      const reversed = splitted.reverse();
+      const reversedUppercase = reversed.join('');
+
+      // render result for user
+      document.getElementById('output').innerHTML = reversedUppercase;
+
+      // log result for developers
+      console.log('\n --- user action ---');
+      console.log('input:', (typeof input) + ',', input);
+      console.log('reversedUppercase:', (typeof reversedUppercase) + ',', reversedUppercase);
+
+      // for the browser
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <section id='user-interface' class='container'>
+    <textarea id='input' class='half'></textarea>
+    <pre id='output' class='half bordered'></pre>
+  </section>
+
+  <script id='listener'>
+    document.getElementById('input').addEventListener('keyup', handler);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hex Setter</title>
+  <meta charset="utf-8">
+
+  <style>
+    .output {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: monospace;
+      font-size: 2em;
+    }
+
+    .inputs {
+      text-align: center;
+    }
+
+    .button {
+      margin-top: 1%;
+    }
+  </style>
+
+  <script src='../testing.js'></script>
+  <script id='logic'>
+    const colorCodeToStyleTests = [
+      { name: 'first', args: ['2', '4', '6', '8', 'a', 'c'], expected: 'background-color: #2468ac;' },
+      { name: 'second', args: ['f', 'f', 'c', 'c', '0', '0'], expected: 'background-color: #ffcc00;' },
+      { name: 'third', args: ['e', 'e', 'e', 'e', 'e', 'e'], expected: 'background-color: #eeeeee;' },
+      { name: 'fourth', args: ['1', '3', '5', '7', '9', 'b'], expected: 'background-color: #13579b;' },
+    ];
+
+    function colorCodeToStyle(a, b, c, d, e, f) { }
+
+    testing(colorCodeToStyle, colorCodeToStyleTests);
+  </script>
+  <script id='handler'>
+    function setColorHandler(event) {
+      debugger;
+      // read & process user input
+      const form = event.target.form;
+      const char1 = form.first.value;
+      const char2 = form.second.value;
+      const char3 = form.third.value;
+      const char4 = form.fourth.value;
+      const char5 = form.fifth.value;
+      const char6 = form.sixth.value;
+
+      // execute core logic
+      const newStyle = 'background-color: #' + char1 + char2 + char3 + char4 + char5 + char6 + ';';
+
+      // display results to user
+      document.getElementById('new-style').innerHTML = newStyle;
+      document.body.style = newStyle;
+
+      // log action for developers
+      console.log('\n-- user action --');
+      console.log('char1:', '(' + typeof char1 + ')', char1);
+      console.log('char2:', '(' + typeof char2 + ')', char2);
+      console.log('char3:', '(' + typeof char3 + ')', char3);
+      console.log('char4:', '(' + typeof char4 + ')', char4);
+      console.log('char5:', '(' + typeof char5 + ')', char5);
+      console.log('char6:', '(' + typeof char6 + ')', char6);
+      console.log('newStyle:', '(' + typeof newStyle + ')', newStyle);
+
+      // tell the browser everything is OK
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <section id='user-interface' class='inputs'>
+    <form id='hex-value'>
+      <h2>Select a hex code:</h2>
+      <div>
+        <code>#</code>
+        <select name="first">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+          <option value="e">e</option>
+          <option value="f">f</option>
+        </select>
+        <select name="second">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+          <option value="e">e</option>
+          <option value="f">f</option>
+        </select>
+        <select name="third">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+          <option value="e">e</option>
+          <option value="f">f</option>
+        </select>
+        <select name="fourth">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+          <option value="e">e</option>
+          <option value="f">f</option>
+        </select>
+        <select name="fifth">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+          <option value="e">e</option>
+          <option value="f">f</option>
+        </select>
+        <select name="sixth">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+          <option value="e">e</option>
+          <option value="f">f</option>
+        </select>
+      </div>
+    </form>
+    <code id='new-style' class='output'></code>
+  </section>
+
+  <script id='listeners'>
+    document.getElementById('hex-value').addEventListener('change', setColorHandler);
+  </script>
+</body>
+
+</html>

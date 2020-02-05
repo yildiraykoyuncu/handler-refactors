@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Challenge</title>
+  <meta charset="utf-8">
+
+  <style>
+    .first-class {
+      display: flex;
+      flex-direction: row-reverse;
+      background-color: darkgreen;
+      height: 30vh;
+      width: 60vw;
+    }
+
+    .second-class {
+      display: hidden;
+    }
+
+    .third-class {
+      background-color: black;
+      position: fixed;
+      top: 10vh;
+      left: 10vw;
+    }
+  </style>
+
+  <script src='../testing.js'></script>
+  <script id='logic'>
+    const createClassNameTests = [
+      { name: 'first', args: ['first'], expected: 'first-class' },
+      { name: 'second', args: ['second'], expected: 'second-class' },
+      { name: 'third', args: ['third'], expected: 'third-class' },
+      { name: 'fourth', args: ['fourth'], expected: 'fourth-class' },
+      { name: 'fifth', args: ['train'], expected: 'train-class' },
+    ];
+
+    function _(which) { }
+
+    testing(createClassName, createClassNameTests);
+  </script>
+  <script id='handler'>function hovercraftHandler(event) {
+      debugger;
+      // read & process user input
+      const whichOne = event.target.id;
+
+      // execute core logic
+      const newClass = whichOne + '-class';
+
+      // display results to user
+      document.getElementById('user-interface').className = newClass;
+
+      // log action for developers
+      console.log('\n-- user action --');
+      console.log('whichOne:', '(' + typeof whichOne + ')', whichOne);
+      console.log('newClass:', '(' + typeof newClass + ')', newClass);
+
+      // tell the browser everything is OK
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <section id='user-interface'>
+    <div id='first'>class 1</div>
+    <div id='second'>class 2</div>
+    <div id='third'>class 3</div>
+  </section>
+
+  <script id='listeners'>
+    document.getElementById('first').addEventListener('mouseover', hovercraftHandler);
+    document.getElementById('second').addEventListener('mouseover', hovercraftHandler);
+    document.getElementById('third').addEventListener('mouseover', hovercraftHandler);
+  </script>
+</body>
+
+</html>
