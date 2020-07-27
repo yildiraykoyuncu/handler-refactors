@@ -19,6 +19,8 @@
   <script src='../../lib/describe-it.js'></script>
 
   <script id='logic'>
+    'use strict';
+
     const expect = chai.expect;
 
     /**
@@ -69,6 +71,8 @@
     });
   </script>
   <script id='handler'>
+    'use strict';
+
     const replaceWithHandler = () => {
       debugger;
       // read & process user input
@@ -105,6 +109,8 @@
   </main>
 
   <script id='listeners'>
+    'use strict';
+
     const replaceButton = document.getElementById('replace-button');
     replaceButton.addEventListener('click', replaceWithHandler);
   </script>

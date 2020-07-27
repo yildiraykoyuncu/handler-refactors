@@ -19,6 +19,8 @@
   <script src='../../lib/describe-it.js'></script>
 
   <script id='logic'>
+    'use strict';
+
     const expect = chai.expect;
 
     /**
@@ -30,33 +32,35 @@
 
     describe('replaceWith: replaces characters', () => {
       it('replaces nothing in an empty string', () => {
-        const expected = _;
-        const actual = replaceWith(_);
+        const expected = '';
+        const actual = replaceWith('', 'a', 'x');
         expect(actual).to.equal(expected);
       });
       it('an empty oldThing does nothing', () => {
-        const expected = _;
-        const actual = replaceWith(_);
+        const expected = 'hello';
+        const actual = replaceWith('hello', '', 'x');
         expect(actual).to.equal(expected);
       });
       it('an empty newThing does nothing', () => {
-        const expected = _;
-        const actual = replaceWith(_);
+        const expected = 'hello';
+        const actual = replaceWith('hello', 'a', '');
         expect(actual).to.equal(expected);
       });
       it('replaces nothing when the oldThing isn\'t there', () => {
-        const expected = _;
-        const actual = replaceWith(_);
+        const expected = 'hello';
+        const actual = replaceWith('hello', 'a', 'x');
         expect(actual).to.equal(expected);
       });
       it('successfully replaces the oldThing', () => {
-        const expected = _;
-        const actual = replaceWith(_);
+        const expected = 'flex';
+        const actual = replaceWith('flea', 'a', 'x');
         expect(actual).to.equal(expected);
       });
     });
   </script>
   <script id='handler'>
+    'use strict';
+
     const replaceWithHandler = () => {
       debugger;
       // read & process user input

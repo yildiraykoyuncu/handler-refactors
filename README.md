@@ -10,17 +10,16 @@ Instead the goal to get lots of practice navigating source code, debugging, and 
     - Examples
         - [Replace With](./1-basic-handlers/z-example-replace-with)
     - Exercises
-        - [1]()
-        - [2]()
-        - [3]()
+        - [Average Evens](./1-basic-handlers/average-evens)
+        - [Cap-Swap](./1-basic-handlers/cap-swap)
+        - [List Items](./1-basic-handlers/list-items)
 2. Script Variables
     - Examples
-        - [1]()
-        - [2]()
+        - [Running Average](./2-script-variables/z-example-running-average)
     - Exercises
-        - [1]()
-        - [2]()
-        - [3]()
+        - [List Items](./2-script-variables/list-items)
+        - [No Copies](./2-script-variables/no-copies)
+        - [Search Entries](./2-script-variables/search-entries)
 3. DOM and Events
     - Examples
         - [Color Palate](./dom-and-events/z-example-color-palate)

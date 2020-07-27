@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>running average</title>
+  <meta charset="utf-8">
+
+  <style>
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+
+  <script src='../../lib/chai.js'></script>
+  <script src='../../lib/describe-it.js'></script>
+
+  <script id='data'>
+    let numberOfNumbers = 0;
+    let average = 0;
+  </script>
+
+  <script id='logic'>
+    'use strict';
+
+    const expect = chai.expect;
+
+    /**
+     *
+     */
+    const newAverage = (prevAverage, next, numOfNums) => {
+
+    };
+
+    describe('newAverage: computes the next in a series of running averages', () => {
+      describe('newAverage: correctly computes averages', () => {
+        it('large number of numbers', () => {
+          const expected = 12;
+          const actual = newAverage(11995, 5, 1000);
+          expect(actual).to.equal(expected);
+        });
+        it('small number of numbers', () => {
+          const expected = 12;
+          const actual = newAverage(19, 5, 2);
+          expect(actual).to.equal(expected);
+        });
+      });
+      describe('has safety checks', () => {
+        it('type-checks the first arg', () => {
+          const shouldThrow = () => newAverage(true, 1, 0);
+          expect(shouldThrow).to.throw(TypeError, 'prevAverage is not a number');
+        });
+        it('type-checks the second arg', () => {
+          const shouldThrow = () => newAverage(2, true, 0);
+          expect(shouldThrow).to.throw(TypeError, 'next is not a number');
+        });
+        it('type-checks the third arg', () => {
+          const shouldThrow = () => newAverage(2, 1, true);
+          expect(shouldThrow).to.throw(TypeError, 'numOfNums is not a number');
+        });
+        it('will not divide by zero', () => {
+          const shouldThrow = () => newAverage(2, 1, 0);
+          expect(shouldThrow).to.throw(RangeError, 'numOfNums can not be 0');
+        });
+      });
+    });
+  </script>
+  <script id='handler'>
+    'use strict';
+
+    const runningAverageHandler = () => {
+
+      // read & process user input
+      const userInput = prompt('add a number to the running average');
+      const newNumber = Number(userInput);
+      if (Number.isNaN(newNumber)) {
+        alert(`"${userInput}" is not a valid number`);
+        return;
+      }
+
+      // execute core logic
+      // script variables should only be updated in the handler
+      numberOfNumbers = numberOfNumbers + 1;
+      // if they are needed in the logic, pass them as an argument
+      average = (average + newNumber) / numberOfNumbers;
+
+      // communicate result to user
+      const message = `running average: ${average}`;
+      alert(message);
+
+    }
+  </script>
+</head>
+
+<body>
+  <main id='user-interface' class='centered'>
+    <button onclick='runningAverageHandler()'>running average</button>
+  </main>
+</body>
+
+</html>

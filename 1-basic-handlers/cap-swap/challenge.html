@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>cap-swap</title>
+  <meta charset="utf-8">
+
+  <style>
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+
+  <script src='../../lib/chai.js'></script>
+  <script src='../../lib/describe-it.js'></script>
+
+  <script id='logic'>
+    'use strict';
+
+    const expect = chai.expect;
+
+    /**
+     *
+     */
+    const capSwap = (originalString) => {
+
+    };
+
+    describe('capSwap: makes uppercase lowercase, and lowercase uppercase', () => {
+      describe('correctly swaps uppercase & lowercase', () => {
+        it('returns an empty string for an empty string', () => {
+          const expected = '';
+          const actual = capSwap('');
+          expect(actual).to.equal(expected);
+        });
+        it('changes nothing if there are no letters', () => {
+          const expected = '1234567890.,;:\'"{}()[]/?!@#$%^&*';
+          const actual = capSwap('1234567890.,;:\'"{}()[]/?!@#$%^&*');
+          expect(actual).to.equal(expected);
+        });
+        it('makes upper case lower case', () => {
+          const expected = 'qwertyuiopasdfghjklzxcvbnm';
+          const actual = capSwap('QWERTYUIOPASDFGHJKLZXCVBNM');
+          expect(actual).to.equal(expected);
+        });
+        it('makes lower case upper case', () => {
+          const expected = 'QWERTYUIOPASDFGHJKLZXCVBNM';
+          const actual = capSwap('qwertyuiopasdfghjklzxcvbnm');
+          expect(actual).to.equal(expected);
+        });
+        it('works with mixed strings', () => {
+          const expected = '.aA12Bb654Qq.';
+          const actual = capSwap('.Aa12bB654qQ.');
+          expect(actual).to.equal(expected);
+        });
+      });
+      describe('capSwap is type-safe', () => {
+        it('throws an error if the arg is not a string', () => {
+          const shouldThrow = () => capSwap(0);
+          expect(shouldThrow).to.throw(TypeError, 'originalString is not a string');
+        });
+      });
+    });
+  </script>
+  <script id='handler'>
+    'use strict';
+
+    const capSwapHandler = () => {
+
+      // read & process user input
+      const userInput = prompt('enter a string to cap-swap');
+
+      // execute core logic
+      const bigSmallSmallBig = (str) => {
+        const charCode = str.charCodeAt(0);
+        if (64 < charCode && charCode < 91) {
+          return String.fromCharCode(charCode + 32);
+        } else if (96 < charCode && charCode < 123) {
+          return String.fromCharCode(charCode - 32);
+        } else {
+          return str;
+        }
+      };
+      const capSwapped = userInput
+        .split('')
+        .map(bigSmallSmallBig)
+        .join('');
+
+      // communicate result to user
+      alert(capSwapped);
+
+    }
+  </script>
+</head>
+
+<body>
+  <main id='user-interface' class='centered'>
+    <button onclick='capSwapHandler()'>swap caps</button>
+  </main>
+</body>
+
+</html>

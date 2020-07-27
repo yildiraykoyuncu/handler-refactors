@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>search entries</title>
+  <meta charset="utf-8">
+
+  <style>
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+
+  <script src='../../lib/chai.js'></script>
+  <script src='../../lib/describe-it.js'></script>
+
+  <script id='data'>
+    const programData = {
+      breakfast: 'eggs, milk, bread',
+      lunch: 'sandwich, shake, fries',
+      snack: 'chips, red bull',
+      dinner: 'pasta, pesto, parmesan',
+    };
+  </script>
+
+  <script id='logic'>
+    'use strict';
+
+    const expect = chai.expect;
+
+    /**
+     *
+     */
+    const search = (obj, bp) => {
+      if (Object(obj) !== Object(obj)) { throw new TypeError('obj is not an object'); }
+      if (_) { throw new TypeError('_'); }
+
+    };
+
+    describe('search: returns a formatted string containing search results', () => {
+      describe('search: correctly finds and formats ntries', () => {
+        it('an empty object returns an empty string', () => {
+          const expected = '';
+          const actual = search({}, 'chair');
+          expect(actual).to.equal(expected);
+        });
+        it('an empty string returns an empty string', () => {
+          const expected = '';
+          const actual = search({ a: 'x', b: 'y', c: 'z' }, '');
+          expect(actual).to.equal(expected);
+        });
+        it('returns all entries if they all match', () => {
+          const expected = '\n- a: aid\n- b: integer\n- c: cairn';
+          const actual = search({ a: 'aid', b: 'integer', c: 'cairn' }, 'i');
+          expect(actual).to.equal(expected);
+        });
+        it('returns no entries if none match', () => {
+          const expected = '';
+          const actual = search({ a: 'aid', b: 'integer', c: 'cairn' }, 'x');
+          expect(actual).to.equal(expected);
+        });
+        it('returns only matching entries', () => {
+          const expected = '\n- a: aid\n- c: cairn';
+          const actual = search({ a: 'aid', b: 'integer', c: 'cairn' }, 'a');
+          expect(actual).to.equal(expected);
+        });
+      });
+      describe('search: uses arguments correctly', () => {
+        it('throws an error if the first argument is not an object', () => {
+          const shouldThrow = () => search(':)', 'chair');
+          expect(shouldThrow).to.throw(TypeError, 'obj is not an object');
+        });
+        it('throws an error if the second arg is not a string', () => {
+          const shouldThrow = () => search({ a: 'x', b: 'y' }, 3);
+          expect(shouldThrow).to.throw(TypeError, 'bp is not a string');
+        });
+        it('does not modify the object argument', () => {
+          const arg = { a: 'x', b: 'y', c: 'z' };
+          search(arg);
+          expect(arg).to.deep.equal({ a: 'x', b: 'y', c: 'z' });
+        });
+      });
+    });
+  </script>
+  <script id='handler'>
+    'use strict';
+
+    const searchEntriesHandler = () => {
+
+      // read & process user input
+      const query = prompt('enter a search query');
+      if (query === null || query === '') {
+        return;
+      }
+
+      // execute core logic
+      const results = Object.entries(programData)
+        .filter(entry => entry[1].includes(query))
+        .reduce((acc, next) => {
+          return acc + `\n- ${next[0]}: ${next[1]}`
+        }, '');
+
+      // communicate result to user
+      const message = `search results:${results}`;
+      alert(message);
+    }
+  </script>
+</head>
+
+<body>
+  <main id='user-interface' class='centered'>
+    <button onclick='searchEntriesHandler()'>search</button>
+  </main>
+</body>
+
+</html>

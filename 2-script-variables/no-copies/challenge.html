@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>no copies</title>
+  <meta charset="utf-8">
+
+  <style>
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+
+  <script src='../../lib/chai.js'></script>
+  <script src='../../lib/describe-it.js'></script>
+
+  <script id='data'>
+    // this isn't a const!  maybe you should be re-assigning it?
+    let noCopies = [];
+  </script>
+
+  <script id='logic'>
+    'use strict';
+
+    const expect = chai.expect;
+
+    /**
+     *
+     */
+    const saveNoCopies = (arr, newEntry) => {
+      if (_) { _; }
+      if (_) { _; }
+
+
+    };
+
+    describe('saveNoCopies: ', () => {
+      describe('saveNoCopies: adds a new item to an array if it\'s not saved', () => {
+        it('adds entries that do not exist', () => {
+          const expected = ['a', 'b', 'c', 'd'];
+          const actual = saveNoCopies(['a', 'b', 'c'], 'd');
+          expect(actual).to.deep.equal(expected);
+        });
+        it('does not add entries that are at the beginning', () => {
+          const expected = ['a', 'b', 'c'];
+          const actual = saveNoCopies(['a', 'b', 'c'], 'a');
+          expect(actual).to.deep.equal(expected);
+        });
+        it('does not add entries that are in the middle', () => {
+          const expected = ['a', 'b', 'c'];
+          const actual = saveNoCopies(['a', 'b', 'c'], 'b');
+          expect(actual).to.deep.equal(expected);
+        });
+        it('does not add entries that are at the end', () => {
+          const expected = ['a', 'b', 'c'];
+          const actual = saveNoCopies(['a', 'b', 'c'], 'c');
+          expect(actual).to.deep.equal(expected);
+        });
+      });
+      describe('saveNoCopies has safety checks', () => {
+        it('throws an error if the arr is not an array', () => {
+          const shouldThrow = () => saveNoCopies(0);
+          expect(shouldThrow).to.throw(TypeError, 'arr is not an array');
+        });
+        it('throws an error if there are non-strings in arr', () => {
+          const shouldThrow = () => saveNoCopies(['a', 'b', 3, 'd']);
+          expect(shouldThrow).to.throw(TypeError, 'arr is not an array of strings');
+        });
+        it('does not modify the argument', () => {
+          const arg = ['a', 'b', 'c', 'd', 'e'];
+          saveNoCopies(arg);
+          expect(arg).to.deep.equal(['a', 'b', 'c', 'd', 'e']);
+        });
+        it('returns a new array', () => {
+          const arg = ['a', 'b', 'c', 'd', 'e'];
+          const returned = saveNoCopies(arg);
+          expect(returned).to.not.equal(arg);
+        });
+      });
+    });
+  </script>
+  <script id='handler'>
+    'use strict';
+
+    const noCopiesHandler = () => {
+
+      // read & process user input
+      const userInput = prompt('enter a string to save');
+
+      // execute core logic
+      const alreadySaved = noCopies.includes(userInput);
+      if (!alreadySaved) {
+        noCopies.push(userInput);
+      }
+
+      // communicate result to user
+      const message = noCopies.toString();
+      alert(message);
+
+    }
+  </script>
+</head>
+
+<body>
+  <main id='user-interface' class='centered'>
+    <button onclick='noCopiesHandler()'>no copies</button>
+  </main>
+</body>
+
+</html>
