@@ -11,17 +11,15 @@
       width: 100vw;
     }
   </style>
-  <script src='../testing.js'></script>
+  <script src='../../lib/testing.js'></script>
   <script id='logic'>
     const formatCoordinatesTests = [
-      { name: 'first', args: [5, 1], expected: 'X: 5\nY: 1' },
-      { name: 'second', args: [12, -40], expected: 'X: 12\nY: -40' },
-      { name: 'third', args: [-1999, 409], expected: 'X: -1999\nY: 409' },
+      { name: 'Test 1', args: [5, 1], expected: 'X: 5\nY: 2' },
+      { name: 'Test 2', args: [12, -40], expected: 'X: 12\nY: -40' },
+      { name: 'Test 3', args: [-1999, 409], expected: 'X: -1999\nY: 409' },
     ]
 
-    function formatCoordinates(x, y) {
-      return 'X: ' + x + '\nY: ' + y
-    }
+    function formatCoordinates(x, y) { }
 
     testing(formatCoordinates, formatCoordinatesTests);
   </script>
@@ -33,7 +31,7 @@
       const yValue = event.pageY;
 
       // execute core logic
-      const formattedCoordinates = formatCoordinates(xValue, yValue);
+      const formattedCoordinates = 'X: ' + xValue + '\nY: ' + yValue;
 
       // render result for user
       document.getElementById('mouse-position').innerHTML = formattedCoordinates;

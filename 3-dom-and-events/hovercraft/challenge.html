@@ -26,14 +26,14 @@
     }
   </style>
 
-  <script src='../testing.js'></script>
+  <script src='../../lib/testing.js'></script>
   <script id='logic'>
     const createClassNameTests = [
-      { name: 'first', args: ['first'], expected: 'first-class' },
-      { name: 'second', args: ['second'], expected: 'second-class' },
-      { name: 'third', args: ['third'], expected: 'third-class' },
-      { name: 'fourth', args: ['fourth'], expected: 'fourth-class' },
-      { name: 'fifth', args: ['train'], expected: 'train-class' },
+      { name: 'Test 1', args: ['Test 1'], expected: 'first-class' },
+      { name: 'Test 2', args: ['Test 2'], expected: 'second-class' },
+      { name: 'Test 3', args: ['Test 3'], expected: 'third-class' },
+      { name: 'Test 4', args: ['Test 4'], expected: 'fourth-class' },
+      { name: 'Test 5', args: ['train'], expected: 'train-class' },
     ];
 
     function _(which) { }
@@ -64,15 +64,15 @@
 
 <body>
   <section id='user-interface'>
-    <div id='first'>class 1</div>
-    <div id='second'>class 2</div>
-    <div id='third'>class 3</div>
+    <div id='Test 1'>class 1</div>
+    <div id='Test 2'>class 2</div>
+    <div id='Test 3'>class 3</div>
   </section>
 
   <script id='listeners'>
-    document.getElementById('first').addEventListener('mouseover', hovercraftHandler);
-    document.getElementById('second').addEventListener('mouseover', hovercraftHandler);
-    document.getElementById('third').addEventListener('mouseover', hovercraftHandler);
+    document.getElementById('Test 1').addEventListener('mouseover', hovercraftHandler);
+    document.getElementById('Test 2').addEventListener('mouseover', hovercraftHandler);
+    document.getElementById('Test 3').addEventListener('mouseover', hovercraftHandler);
   </script>
 </body>
 
